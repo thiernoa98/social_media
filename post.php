@@ -5,11 +5,11 @@
 <?php 
  $user_data = check_login($con);
 
-	$image = "Female.jpg";
+	$image = "assets/Female.jpg";
 	if ($row['gender'] == "Male") 
 	{
 
-		$image = "Male.jpg";
+		$image = "assets/Male.jpg";
 	}
 
 
@@ -94,7 +94,7 @@
 $likess = "";
 
 //condition, if row > 0, then display row
-$likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height:15px'>".$row["likes"]. ')' : "";
+$likess = ($row["likes"] > 0) ? '('."<img src='assets/bl.jpg' style='width:20px; height:15px'>".$row["likes"]. ')' : "";
 
 ?>
 
@@ -130,14 +130,14 @@ $likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height
 						$i_likedd = true;
 						if ($i_likedd) 
 						{
-							echo "<img src='bl.jpg' style='width:15px; height: 15px;'>";
+							echo "<img src='assets/bl.jpg' style='width:15px; height: 15px;'>";
 						}		
 						
 							
 					}
 					else
 					{
-						echo "<img src='like2.png' style='width:15px; height: 15px;'>";
+						echo "<img src='assets/like2.png' style='width:15px; height: 15px;'>";
 					}
 				}
 			}
