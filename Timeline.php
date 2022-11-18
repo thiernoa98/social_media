@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 					</a>
 					<div style="text-align: center;  padding: 50px;">
 						<a href="Browse_people.php?id=<?php echo $user_data['user_id'] ?>" style="text-decoration: none;"> Browse for People </a>
-						 <?php echo "<img src='search.png' style='width:20px'"?>
+						 <?php echo "<img src='assets/search.png' style='width:20px'"?>
 					  <br>
 
 					</div>
