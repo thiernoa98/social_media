@@ -1,24 +1,20 @@
 
 <?php 
-//$curent_user = $user_data;
-
-//assigning the corner image
 $corner_img = "Male.jpg";
 if (isset($curent_user) && file_exists($curent_user['profile_img'])) 
 {
-	//get_thumb_profile shape the image
 	$corner_img = get_thumb_profile($curent_user['profile_img']);
 }
 else
 {
 	if ($curent_user['gender'] == "Male") 
 	{
-		$corner_img = "Male.jpg"; 
+		$corner_img = "assets/Male.jpg"; 
 		
 	}
 	else
 	{
-		$corner_img = "Female.jpg";
+		$corner_img = "assets/Female.jpg";
 	}
 }
 
