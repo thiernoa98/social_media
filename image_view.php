@@ -5,12 +5,10 @@ include("connection.php");
 include("function.php");
 
 
-//check_login is a function
 $user_data = check_login($con);
 $curent_user = $user_data;
 
 
-//$row[]=false ;
 $row = get_one_post($_GET,$con,$_SESSION);
 
 		
