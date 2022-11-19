@@ -132,7 +132,7 @@ $row = get_one_post($_GET,$con,$_SESSION);
 
 
 
-<!-- post area-->
+<!-- post area, start-->
 		<div style=" min-height:400px; flex:3; padding: 20px;" id="friends_bar" >
 			
 			<div style="border: solid thin #aaa;padding: 10px;">
