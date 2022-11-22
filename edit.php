@@ -1,15 +1,12 @@
 <?php 
-// we use $SESSION because it's a variable that can be accessed by any page in a website
-// the first 4 lines of codes are used to check if the user is loged in, else redirect to login page
 session_start();
 
 	include("connection.php");
 	include("function.php");
 	
-	  //check_login is a function
 	$user_data = check_login($con);
 	$curent_user = $user_data;
-	//getting the right post to delete
+	
 	$row = get_one_post($_GET,$con,$_SESSION);
 	
 	$return_to = $_SERVER['HTTP_REFERER'];
@@ -20,8 +17,6 @@ session_start();
 		 $error = "error, no file found";
 	}
 
-	//the HTTP_REFERER is found in the $_SERVER, this have the path to where we were at first.
-	//!strstr($_SERVER['HTTP_REFERER'], "edit.php") means check if the page is not from edit.php
 	if (isset($_SERVER['HTTP_REFERER']) && !strstr($_SERVER['HTTP_REFERER'], "edit.php")) 
 	{
 		
@@ -171,8 +166,8 @@ session_start();
 						 //who can delete the post
 						if ($row['user_id'] != $_SESSION['user_id']) 
 						{
-							/*
-							echo "<h2 style='color:red; text-align:center'> Access Denied! You Cannot Delete this Post! </h2>"; */
+							
+							echo "<h2 style='color:red; text-align:center'> Access Denied! You Cannot Delete this Post! </h2>"; 
 						}
 						 else
 						 {
@@ -189,11 +184,11 @@ session_start();
 							echo "<input id='share_button' type='submit' value='Save'><br>";
 
 							echo "<div style='text-align:center'>";
-							//checking for images
+							
 							if (file_exists($row['image']) ) 
 							{
 
-								//calling the resizing function from u_p_img.php
+								
 								$post_img = $row['image'];
 								echo "<img src='$post_img' style='width:55%'/>";
 
