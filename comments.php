@@ -5,18 +5,15 @@ include("connection.php");
 include("function.php");
 
 
-//check_login is a function
 $user_data = check_login($con);
 $curent_user = $user_data;
 
 
 
-//getting one post to comment on
+//getting a single post to comment on
 $row = get_one_post($_GET,$con,$_SESSION);
 
 
- // posting codes begin
-//codes instantiated from the function class
 if ($_SERVER['REQUEST_METHOD'] == "POST") 
 {
 	
@@ -190,7 +187,6 @@ $comments = get_comments($row['content_id'],$con);
 
 						<div style="border: solid thin #aaa;padding: 10px;">
 
-						<!--  to upload a file, we must have the enctype -->
 						<form method="post" enctype="multipart/form-data">
 							<textarea name = "content" placeholder="Add a comment"></textarea>
 
@@ -209,7 +205,6 @@ $comments = get_comments($row['content_id'],$con);
 							{
 								foreach ($comments as $row) 
 								{
-									//I didn't use post.php to remove comments
 									include("post_comments.php");
 								}
 							}
