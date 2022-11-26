@@ -1,9 +1,7 @@
-<!-- post area, images will be within this div-->
 <div style=" min-height:400px; width: 100%; background-color:lightgrey; text-align: center;" >
 	<div style="padding: 10%;">
 	<?php 
 
-	//querying to display images, by looking for has_img 
 	$query = "select * from contents where has_img = 1 && userid = $user_data[user_id] order by id desc limit 30";
 	$result = mysqli_query($con, $query);
 
