@@ -1,24 +1,20 @@
 <?php 
-// we use $SESSION because it's a variable that can be accessed by any page in a website
-// the first 4 lines of codes are used to check if the user is loged in, else redirect to login page
+
 session_start();
 
 	include("connection.php");
 	include("function.php");
 
-	  //check_login is a function
 	$user_data = check_login($con);
 
 	$curent_user = $user_data;
 	
-	// posting image codes begin
 if ($_SERVER['REQUEST_METHOD'] == "POST") 
 {
-//before we save the file, we check is there is an actual file
+	
  if(isset($_FILES['file']['name']) && $_FILES['file']['name'] != "") 
 	{
 
-		//checking the file type, only photos
 		if ( $_FILES['file']['type'] == 'image/jpeg') 
 		{
 			//check file size, 7 megabyte or less only
