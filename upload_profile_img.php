@@ -212,8 +212,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 					<!-- image place holder when changing  -->
 					<?php 
 
-				//if update is set to cover
-				if (isset($_GET['update']) && $_GET['update'] == "cover") // update is from the profile page after the ? query string
+				
+				if (isset($_GET['update']) && $_GET['update'] == "cover") 
 
 				{
 					$update = "cover";
