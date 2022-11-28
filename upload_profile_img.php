@@ -17,39 +17,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 
 		if ( $_FILES['file']['type'] == 'image/jpeg') 
 		{
-			//check file size, 7 megabyte or less only
-			$file_size = (1024 * 1024) * 7; //7megabytesb
+			
+			$file_size = (1024 * 1024) * 7; 
 			if ($_FILES['file']['size'] < $file_size) 
 			{
 
-				//creating a random folder 
+				
 				$img_folder = "uploaded_profiles/" . $user_data['user_id']."/"; 
 
 				if (!file_exists($img_folder)) 
 				{
 					mkdir($img_folder, 0777, true); //make foder.. 0777 file permission
 
-				//creating an empty index.php file in the new folder, for security reason
+				
 					file_put_contents($img_folder . "index.php", 
 						"<h1 style='color:red'> Error 404 </h1>");
 				}
 
 				$filename = $img_folder . generate_imgname(14) ;
 
-				//the name of the file is within the $_FILES array
+				
 				move_uploaded_file($_FILES['file']['tmp_name'], $filename);
 
-				//making sure that the cover image has the bigger size
 				$update = "profile";
-				if (isset($_GET['update'])) // update is from the profile page after the ?
+				if (isset($_GET['update'])) 
 				{
 					$update = $_GET['update'];
 					
 				}
-				//sizing the cover
 				if ($update == "cover") 
 				{
-					//this is to delete the old photo each time a user changes image
+					
 					if (file_exists($user_data['cover_img'])) 
 					{
 						unlink($user_data['cover_img']);
@@ -59,24 +57,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 				}
 				else
 				{
-					//this is to delete the old photo each time a user changes image
+					
 					if (file_exists($user_data['profile_img'])) 
 					{
 						unlink($user_data['profile_img']);
 					}
 
-				//changing the original profile iamge size/dimension
+				
 					$image = resize_img($filename, $filename, 1500,1500);
 				}
 				
-				//check if file was uploaded/exist, save to database
+				
 				if (file_exists($filename)) 
 				{
-					//making sure that each user has their own pic
-					$user_id = $user_data['user_id'];
 					
-
-					//making sure that each image go to their assigned destination
+					$user_id = $user_data['user_id'];
+	
 					if ($update == "cover") 
 					{
 						$query = "update users set cover_img = '$filename'
@@ -90,15 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 						$query = "update users set profile_img = '$filename'
 					 	where user_id = '$user_id' limit 1";
 
-					 	//this here post the profile to the post
+					 	
 					 	$_POST['is_profile_img'] = 1;
 					}	
 
-					//save in the database
 					mysqli_query($con,$query);
 		
-					//create a post for the profile and cover images
-					//instantiate the function create_post 
+	
 					create_post($user_id, $_POST,$con, $filename);
 
 					header("Location:profile.php");
