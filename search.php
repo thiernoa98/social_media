@@ -159,7 +159,7 @@ $curent_user = $user_data;
 						}
 
 
-						//adding the users found in the search
+						
 						if (is_array($result)) 
 						{
 						
