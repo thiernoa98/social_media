@@ -7,14 +7,7 @@ include("function.php");
 
 $user_data = check_login($con);
 $curent_user = $user_data;
-/*
-//find is from the search bar
-if (isset($_GET['find'])) 
-{
-	$find = addslashes($_GET['find']);
 
-}
-*/
 
 ?>
 
@@ -142,7 +135,7 @@ if (isset($_GET['find']))
 				<div style="border: solid thin #aaa;padding: 10px;">
 					
 					<?php 
-					//find is from the search bar/header.php
+					
 					if (isset($_GET['find'])) 
 					{
 						$find = addslashes($_GET['find']);
@@ -150,7 +143,7 @@ if (isset($_GET['find']))
 
 						 $result = "";
 
-						// '%$find' search for all characters before we get the right one
+						
 						$query = "select * from users where first_name like '%$find%' || last_name like '%$find%' ";
 						$results = mysqli_query($con,$query);
 
