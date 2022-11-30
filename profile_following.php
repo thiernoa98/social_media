@@ -12,20 +12,14 @@
 				$row = get_user($row['user_id'],$con);
 				include("friends.php");
 			}
-			
 		
 		}
-	
 	
 		else
 
 		{
 			echo "<h2 style='color:#800080' >Sorry! But ".$user_data['first_name']. " has no followings";	
 		}
-			
-		
-	
-
 
 	?>
 
