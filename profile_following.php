@@ -9,7 +9,6 @@
 		{
 			foreach ($following as $row) 
 			{
-				//$row =... has full data of users, it connects it with the likes table
 				$row = get_user($row['user_id'],$con);
 				include("friends.php");
 			}
