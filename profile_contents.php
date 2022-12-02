@@ -48,7 +48,6 @@ $friends = get_following($user_data['user_id'], "user",$con);
 		
 		<div style="border: solid thin #aaa;padding: 10px;">
 
-<!--  to upload a file, we must have the enctype -->
 			<form method="post" enctype="multipart/form-data">
 				<textarea name = "content" placeholder="what's up"></textarea>
 				<input type="file" name="file">
@@ -71,8 +70,6 @@ $friends = get_following($user_data['user_id'], "user",$con);
 					foreach($result as $row)
 				{
 					
-
-					//$row = get_user($row['user_id'],$con);
 					include("post.php");
 				}
 				
