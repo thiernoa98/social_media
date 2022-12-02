@@ -4,10 +4,8 @@ session_start();
 include("connection.php");
 include("function.php");
 
-  //check_login is a function
  $user_data = check_login($con);
 
- //making sure that we only one user on the header
  $curent_user = $user_data;
  
 if (is_array($profile_data)) 
@@ -18,7 +16,6 @@ if (is_array($profile_data))
 
 $id = $user_data["user_id"];
 
-//querying by getting all users that's not me, 
 $query = "select * from users where user_id != '$id'  ";
 $result = mysqli_query($con, $query);
 
@@ -165,7 +162,6 @@ $result = mysqli_query($con, $query);
 				
 				foreach ($result as $row) 
 				{
-					//$row = get_user($row['user_id'],$con);
 					include("friends.php");
 				}
 				
