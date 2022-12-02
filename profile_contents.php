@@ -2,14 +2,10 @@
 
 $id = $user_data['user_id'];
 
-
-//quering and joinin two tables
-//contents.parent = 0 elimites the comments from the post
 $query = "select * from users inner join contents on users.user_id = contents.userid where contents.parent = 0 && users.user_id = '$id' order by contents.id desc";
 
 $result = mysqli_query($con,$query);
 
-//getting my followings only
 $friends = get_following($user_data['user_id'], "user",$con);
 ?>
 
