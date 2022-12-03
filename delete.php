@@ -1,6 +1,4 @@
 <?php 
-// we use $SESSION because it's a variable that can be accessed by any page in a website
-// the first 4 lines of codes are used to check if the user is loged in, else redirect to login page
 session_start();
 
 	include("connection.php");
