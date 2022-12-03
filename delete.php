@@ -155,7 +155,7 @@ session_start();
 				
 				<div style="border: solid thin #aaa;padding: 10px;">
 					
-				<!--	<h2>Delete Content</h2> -->
+			
 					<form method="post"> 
 						
 						
@@ -170,7 +170,7 @@ session_start();
 						 {
 							echo "Are you sure you wnat to delete this content? <br>
 							<hr> ";
-							//getting the userid 
+							
 							$user = get_user_profile($row['userid'],$con);
 							include("post_delete.php");
 
