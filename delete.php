@@ -4,10 +4,9 @@ session_start();
 	include("connection.php");
 	include("function.php");
 	
-	  //check_login is a function
 	$user_data = check_login($con);
 	$curent_user = $user_data;
-	//getting the right post to delete
+
 	$row = get_one_post($_GET,$con,$_SESSION);
 	
 	$error = "";
@@ -22,7 +21,7 @@ session_start();
 
 	}
 
-	//check if something is posted
+
 	if ($_SERVER['REQUEST_METHOD']== "POST") 
 	{
 		$content = delete_post($_POST['content_id'], $con);
