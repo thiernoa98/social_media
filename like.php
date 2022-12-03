@@ -4,12 +4,9 @@ session_start();
 include("connection.php");
 include("function.php");
 
-//check user login
 $user_data = check_login($con);
 
 
-
-//the HTTP_REFERER is found in the $_SERVER, this have the path to where we were at first.
 if (isset($_SERVER['HTTP_REFERER'])) 
 {
 	$return_to = $_SERVER['HTTP_REFERER'];
@@ -19,7 +16,6 @@ else
 	$return_to = "profile.php";
 }
 
-//the life function, check if type and id exist
 if (isset($_GET['type']) && isset($_GET['id']) ) 
 {	
 	if (is_numeric($_GET['id'])) 
@@ -45,7 +41,7 @@ if (isset($_GET['type']) && isset($_GET['id']) )
 			}
 
 
-			//if the type is following, then it's someone who followed someone
+			
 			if($_GET['type'] == 'user')
 			{
 				$content = user_following($_GET['id'], $_GET['type'], $_SESSION['user_id'],$con);
@@ -65,7 +61,6 @@ if (isset($_GET['type']) && isset($_GET['id']) )
 
 
 
-//the . concartenate 
 header("Location: ".$return_to);
 die;
 
