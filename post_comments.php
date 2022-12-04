@@ -104,9 +104,6 @@ $likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height
 
 </span> 
 
-
-
-
 <!-- Edit and delete -->
 <span style="color: #999; float: right; ">
 
@@ -128,7 +125,6 @@ $likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height
 		";
 	
 	}
-
 
 ?>
 </span>
