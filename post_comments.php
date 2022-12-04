@@ -2,27 +2,21 @@
 <div id="post">
 <div style="margin-right: 5px;">
 
-<!-- check if user is female or male-->
 <!-- posting images on the side of each post -->
 <?php 
  $user_data = check_login($con);
 //$roww = my_post($_GET, $con, $_SESSION);
-	//assign image to female first to avoid using else statement
 
 	$image = "Female.jpg";
 	if ($row['gender'] == "Male") 
 	{
-
 		$image = "Male.jpg";
 	}
 
 
     if (file_exists($row['profile_img'])) 
-	{
-		//get_thumb_profile shape the image
-	
+	{	
 		$image = get_thumb_profile($row['profile_img']);
-
 	}
 
 ?>
@@ -70,17 +64,15 @@
 <!-- post script-->
 <!-- securing the post against hacks using htmlspecialcharts this will 
 	prevent javascript codes from runing someone post it on the post-->
+	
 	<?php echo htmlspecialchars($row['content']) ?>
 	<br><br>
 
 <!-- post image-->
 	<?php 
 
-	//check is there is an actual image 
 	if (file_exists($row['image']) ) 
 	{
-
-		//calling the resizing function from u_p_img.php
 		echo"<a href='image_view.php?content_id=$row[content_id]'>";
 		$post_img = get_thumb_post($row['image']);
 		echo "<img src='$post_img' style='width:90%'/>";
@@ -92,10 +84,9 @@
 	?>
 	<br><br>
 <?php 
-//set likes to empty, so it won't display 0 
+	
 $likess = "";
 
-//condition, if row > 0, then display row
 $likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height:15px'>".$row["likes"]. ')' : "";
 
 ?>
@@ -122,8 +113,6 @@ $likess = ($row["likes"] > 0) ? '('."<img src='bl.jpg' style='width:20px; height
 <!-- show this only when I own the post-->
 <?php 
 
-	//I checked if it's the user logged in, $user_data, so they can edit their posts
-	//if so, they can delete it
 	if ($user_data['user_id'] == $row['user_id'])
 	{
 		
