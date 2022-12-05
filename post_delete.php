@@ -2,11 +2,8 @@
 <div id="post">
 <div style="margin-right: 5px;">
 
-<!-- check if user is female or male-->
-<!-- posting images on the side of each post -->
 <?php 
 
-	//assign image to female first to avoid using else statement
 	$image = "Female.jpg";
 	if ($row['gender'] == "Male") 
 	{
@@ -16,7 +13,6 @@
 
     if (file_exists($row['profile_img'])) 
 	{
-		//get_thumb_profile shape the image
 		$image = get_thumb_profile($row['profile_img']);
 	}
 	
@@ -30,7 +26,6 @@
 <div style="width: 100%;" >
 	<div style="font-weight: bold; color: darkblue; width: 100%;"> 
 	<?php echo htmlspecialchars($row['first_name'])." ".htmlspecialchars($row['last_name']); 
-		
 		?>
 	</div>
 
