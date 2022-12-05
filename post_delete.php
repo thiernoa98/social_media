@@ -2,9 +2,11 @@
 <div id="post">
 <div style="margin-right: 5px;">
 
-<!-- check user gender-->
+<!-- check if user is female or male-->
+<!-- posting images on the side of each post -->
 <?php 
 
+	//assign image to female first to avoid using else statement
 	$image = "Female.jpg";
 	if ($row['gender'] == "Male") 
 	{
@@ -14,6 +16,7 @@
 
     if (file_exists($row['profile_img'])) 
 	{
+		//get_thumb_profile shape the image
 		$image = get_thumb_profile($row['profile_img']);
 	}
 	
@@ -32,7 +35,8 @@
 	</div>
 
 <!-- post script-->
-
+<!-- securing the post against hacks using htmlspecialcharts this will 
+	prevent javascript codes from runing someone post it on the post-->
 	<?php echo htmlspecialchars($row['content']) ?>
 	<br><br>
 
@@ -43,6 +47,7 @@
 	if (file_exists($row['image']) ) 
 	{
 
+		//calling the resizing function from u_p_img.php
 		$post_img = get_thumb_post($row['image']);
 		echo "<img src='$post_img' style='width:90%'/>";
 		
