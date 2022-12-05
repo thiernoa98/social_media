@@ -8,7 +8,6 @@ $user_data = check_login($con);
 
 $curent_user = $user_data;
 
- // posting codes begin
 if ($_SERVER['REQUEST_METHOD'] == "POST") 
 {
 	$id = $user_data['user_id'];
@@ -162,10 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 						<?php 
 							echo $curent_user['first_name']." ".$curent_user['last_name'];
 
-
 						?>
 						
-					
 					</a>
 					<div style="text-align: center;  padding: 50px;">
 						<a href="Browse_people.php?id=<?php echo $user_data['user_id'] ?>" style="text-decoration: none;"> Browse for People </a>
@@ -205,8 +202,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 					{
 						$followers_ids = array_column($followers, "user_id");
 						
-
-						//connecting the array, it also put the array in quotes
 						$followers_ids = implode("','", $followers_ids);
 						
 					}
@@ -216,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 						//adding my own posts to timeline
 						$id = $user_data['user_id'];
 
-						//quering and joinin two tables
+						
 						$query = "select * from users inner join contents on users.user_id = contents.userid where contents.parent = 0 && users.user_id = '$id' || users.user_id in('".$followers_ids."') order by contents.id desc limit 25";
 
 						$result  = mysqli_query($con,$query);
@@ -227,7 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 						//adding my own posts to timeline
 						$id = $user_data['user_id'];
 
-						//quering and joinin two tables
 						$query = "select * from users inner join contents on users.user_id = contents.userid where contents.parent = 0 && users.user_id = '$id' || users.user_id in('".$followers_ids."') order by contents.id desc limit 25";
 
 						$result  = mysqli_query($con,$query);
