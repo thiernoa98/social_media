@@ -1,4 +1,3 @@
-<!-- post area, images will be within this div-->
 <div style=" min-height:400px; width: 100%; background-color:lightgrey; text-align: center;" >
 	<div style="padding: 10%;">
 	<?php 
@@ -14,7 +13,6 @@
 				//$row =... has full data of users, it connects it with the likes table
 				$row = get_user($row['user_id'],$con);
 				include("friends.php");
-
 
 			}
 			
