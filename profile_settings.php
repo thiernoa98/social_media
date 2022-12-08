@@ -4,7 +4,6 @@
 
 		<form method="post" enctype="multipart/form-data">
 
-
 	<?php 
 
 	$settings = get_settings($_SESSION['user_id'],$con);
@@ -29,9 +28,7 @@
 
 		echo " <p style='text-align:left; margin:0px'>Password</p>
 		<input type='password' id='text_box_settings' name='password'  value='$settings[password]' /> ";
-/*
-		htmlspecailchars is for security reeason
-*/
+
 		echo "<br> About me: <br>
 			<textarea style='height:150px' id='text_box_settings' name='about'>".htmlspecialchars($settings['about']). "</textarea>";
 
