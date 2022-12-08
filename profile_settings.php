@@ -11,8 +11,6 @@
 
 	if (is_array($settings)) 
 	{
-		//the value print out the values of the $setting.
-		//we have html special charaters for security
 		echo "<p style='text-align:left; margin:0px'>First Name</p>
 		<input type='text' id='text_box_settings' name='first_name' value='$settings[first_name]' placeholder='First name'/> " ;
 
