@@ -1,4 +1,4 @@
-<!-- post area, images will be within this div-->
+
 <div style=" min-height:400px; width: 100%; background-color:lightgrey; text-align: center;" >
 	<div style="padding: 10%; max-width: 400px; display: inline-block;">
 	
