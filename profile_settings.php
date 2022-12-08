@@ -1,8 +1,7 @@
 
 <div style=" min-height:400px; width: 100%; background-color:lightgrey; text-align: center;" >
 	<div style="padding: 10%; max-width: 400px; display: inline-block;">
-	
-<!--  to upload a file, we must have the enctype -->
+
 		<form method="post" enctype="multipart/form-data">
 
 
