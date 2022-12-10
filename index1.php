@@ -1,4 +1,5 @@
 <?php 
+/*
 session_start();
 
 	include("connection.php");
@@ -30,6 +31,6 @@ session_start();
 
 	Hello <?php echo $user_data['first_name']?>, WELCOME!
 
-
+*/
 </body>
 </html>
