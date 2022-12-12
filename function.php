@@ -28,18 +28,16 @@ function random_num($length)
 
 	$text = "";
 
-	//make sure that length of id is not less than 5
 	if ($length < 5) 
 	{
 		$length = 5;
 	}
 
-	$len = rand(4, $length); // get a rand..om number between 4 and 25
+	$len = rand(4, $length); 
 
-	// get a for loop to get a number of times we want to repeat the loop
 	for ($i=0; $i < $len; $i++) 
 	{ 
-		$text .= rand(0,9); // to get a different number everytime between 0 and 9
+		$text .= rand(0,9); 
 
 
 	}
