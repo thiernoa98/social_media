@@ -2,23 +2,20 @@
 //this function check if user is loged in
 function check_login($con) 
 {
-//check in session if there is user_id, else come back to login 
 	if (isset($_SESSION['user_id'])) 
 	{
 		$id = $_SESSION['user_id'];
 		$query = "select * from users where user_id = '$id' limit 1";
 
-		//get a result
 		$result = mysqli_query($con, $query);
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
-			// mysqli_fetch_assoc == associative array representing the next row in the result set for the result represented by the result parameter
+			
 			$user_data = mysqli_fetch_assoc($result);
 			return $user_data;
 		}
 	}
 
-	//if above code false, then redirect to login page
 
 	header("Location: login.php");
 	die;
