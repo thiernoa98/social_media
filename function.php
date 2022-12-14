@@ -258,8 +258,6 @@ function resize_img($original_file_name,$resized_file_name, $max_width,$max_heig
 
 	imagedestroy($original_image);
 
-
-
 	imagejpeg($new_image, $resized_file_name, 90);
 
 	imagedestroy($new_image);
@@ -273,14 +271,12 @@ function get_thumb_cover($filename)
 
 	crop_img($filename, $thumb, 1366,488);
 
-//check if file exist, then return
 	if (file_exists($thumb)) 
 	{
 		return $thumb;
 	}
 	else
 	{
-		//return original image
 		return $filename;
 	}
 }
@@ -293,7 +289,6 @@ function get_thumb_profile($filename)
 
 	crop_img($filename, $thumb, 700,700);
 
-//check if file exist, then return
 	if (file_exists($thumb)) 
 	{
 		return $thumb;
