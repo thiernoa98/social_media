@@ -198,21 +198,16 @@ function crop_img($original_file_name,$cropped_file_name, $max_width,$max_height
 // resizing the image 
 function resize_img($original_file_name,$resized_file_name, $max_width,$max_height)
 {
-	//check n see if file exixt first
 	if(file_exists($original_file_name)) 
 	{
-		//image resource, the location in our computer
+		
 		$original_image = imagecreatefromjpeg($original_file_name);
-		//$original_image = imagecreatefrompng($original_file_name);
 
-		//calculate original width we got from the resource above
 		$original_width = imagesx($original_image);
 		$original_height = imagesy($original_image);
 
-		//check and see, if the height is greater, then cut it to width size
 		if ($original_height > $original_width)
 		{
-			//make the width equal to the max width
 			$ratio = ($max_width / $original_width);
 
 			$new_width = $max_width;
@@ -220,7 +215,6 @@ function resize_img($original_file_name,$resized_file_name, $max_width,$max_heig
 		}
 		else
 		{
-			// else, if the width is greater, then make it equal to the height
 			$ratio = ($max_height / $original_height);
 
 			$new_height = $max_height;
@@ -229,7 +223,6 @@ function resize_img($original_file_name,$resized_file_name, $max_width,$max_heig
 
 	}
 
-	//adjust just if max width and max height are different
 	if ($max_width != $max_height) 
 	{
 		if ($max_height > $max_width) 
@@ -263,12 +256,10 @@ function resize_img($original_file_name,$resized_file_name, $max_width,$max_heig
 	$new_image = imagecreatetruecolor($new_width, $new_height);
 	imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
 
-	//destroy original image to save space
 	imagedestroy($original_image);
 
 
 
-	//save the new file to cropped_file
 	imagejpeg($new_image, $resized_file_name, 90);
 
 	imagedestroy($new_image);
