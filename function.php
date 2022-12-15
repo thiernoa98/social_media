@@ -425,23 +425,16 @@ function get_user_profile($id, $con)
 
 	if (isset($_GET['id']) && is_numeric($_GET['id'])) 
 	{
-		//helps protect the data "id" by adding slashes
 		$id = addslashes($_GET['id']);
 
 		//must join the two table because userid are different
 		$query = "select * from users inner join contents 
 		on users.user_id = contents.userid where users.user_id = '$id' limit 1";
 
-		
-
 		$result =  mysqli_query($con,$query);
-		
-		//echo $query;
-		
 		
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
-			// mysqli_fetch_assoc == associative array representing the next row in the result set for the result represented by the result parameter
 			$user_data = mysqli_fetch_assoc($result);
 
 			return $user_data;
