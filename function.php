@@ -301,14 +301,13 @@ function get_thumb_profile($filename)
 }
 
 
-//saving the full veersion of the post image to our file
+//saving the full veersion of the post image 
 function get_thumb_post($filename)
 {
 	$thumb = $filename . "_post.jpg";
 
-	crop_img($filename, $thumb, 600,500); //600, 600, make the image square
+	crop_img($filename, $thumb, 600,500);
 
-//check if file exist, then return
 	if (file_exists($thumb)) 
 	{
 		return $thumb;
