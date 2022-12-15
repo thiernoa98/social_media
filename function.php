@@ -329,8 +329,6 @@ function get_thumb_post($filename)
 // creating a post
 function create_post($userid, $data, $con, $files)
 {
-
-	//['file']['name'] is from the html from profile, the name is file
 	if (!empty($data['content']) || !empty($files['file']['name']) || 
 		isset($data['is_profile_img']) || isset($data['is_cover_img'])) 
 	{
@@ -346,7 +344,6 @@ function create_post($userid, $data, $con, $files)
 	//creating a post for the profile pic
 		if (isset($data['is_profile_img']) || isset($data['is_cover_img']) )
 		{
-			//myimg is the image in the posts
 			$myimg = $files;
 			$has_img = 1;
 
@@ -373,31 +370,27 @@ function create_post($userid, $data, $con, $files)
 				{
 					mkdir($img_folder, 0777, true); //make foder.. 0777 file permission
 
-				//creating an empty index.php file in the new folder, for security reason
+					//creating an empty index.php file in the new folder, for security reason
 					file_put_contents($img_folder . "index.php", 
 					"<h1 style='color:red'> Error 404 </h1>");
 				}
 
 				$myimg = $img_folder . generate_imgname(14) ;
 
-				//the name of the file is within the $_FILES array
 				move_uploaded_file($_FILES['file']['tmp_name'], $myimg);
 
-				//resizing the image
 				$image = resize_img($myimg, $myimg, 1500,1500);
 
 				$has_img = 1; 
 			}
 		}
-
-		//addslashes is a function that ignores special characters  
+ 
 		$content = " ";
 		if (isset($data['content'])) 
 		{
 			$content = addslashes($data['content']); 
 		}
 
-		//check for parents/comments
 		if (isset($data['parent']) && is_numeric($data['parent'])) 
 		{
 			$parent = $data['parent'];
@@ -409,13 +402,10 @@ function create_post($userid, $data, $con, $files)
 
 		}
 
-		//creating the random number for the content_id
 		$content_id = random_num(20);
 
-		//storing data in the database 
 		$query = "insert into contents (content_id, userid, content,image, comments,likes, has_img, is_profile_img, is_cover_img,parent) values('$content_id', '$userid', '$content', '$myimg', '$comments', '$likes', '$has_img', '$is_profile_img', '$is_cover_img', '$parent')";
 
-		
 		mysqli_query($con,$query);
 		
 }
