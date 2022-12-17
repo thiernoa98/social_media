@@ -449,18 +449,15 @@ function get_user_profile($id, $con)
 
 
 
-//creating a function to get one post to delete
+// delete function 
 function get_one_post($content_id,$con,$user_id)
 {
-	//to mask the id using addslashes();
 	$error = "";
 	$content_id =$_GET['content_id'];
 	$user_id = $_SESSION['user_id'];
 
 	if (isset($_GET['content_id']) && isset($_SESSION['user_id']) && is_numeric($_GET['content_id'])) 
 	{
-		//$content_id = addslashes();
-		//must join the two table because user ids are different
 		$query = "select * from contents inner join users
 		on contents.userid = users.user_id where contents.content_id = '$content_id' limit 1";
 
