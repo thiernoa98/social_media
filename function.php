@@ -526,20 +526,17 @@ function delete_post($content_id,$con)
 
 
 
-
 //the like function
 function like_content($id, $type, $user_id,$con)
 {
 		
 		$following =  '';
-	
 
-		//saving like details, & cheking if someone has already liked it, then continue
+		//saving like details
 		$query = "select likes from likes where type ='$type' && content_id = '$id' limit 1";
 		$result = mysqli_query($con,$query);
 
 		//checking if a person has already liked the post
-		//then decode the array with jsondecode, make it an array again
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
 			$user_data = mysqli_fetch_assoc($result);
@@ -554,7 +551,6 @@ function like_content($id, $type, $user_id,$con)
 				$user_ids = array_column($likes, "user_id");
 
 
-			//check if current user is not in user_ids or among the likers
 			if (!in_array($user_id, $user_ids)) 
 			{
 				$array["user_id"] = $user_id;
@@ -562,8 +558,6 @@ function like_content($id, $type, $user_id,$con)
 
 				$likes[]= $array;
 
-				//convert the array to string using json
-				//we're converting the array because arrays cannot be saved into databases
 				$likes = json_encode($likes); 
 
 				$query = "update likes set likes = '$likes' where type ='$type' 
@@ -571,14 +565,13 @@ function like_content($id, $type, $user_id,$con)
 
 				mysqli_query($con,$query);
 
-				//increment table after we liked, we use {$type} because that will update the right table
+				//increment table after like, use {$type} because that will update the right table
 				$query = "update {$type}s set likes = likes + 1 where {$type}_id = '$id' limit 1";
 				mysqli_query($con,$query);
 
 			}
 			else //unlike
 			{
-				//search for user who liked it already 
 				$key = array_search($user_id, $user_ids);
 				unset($likes[$key]);
 
@@ -590,9 +583,7 @@ function like_content($id, $type, $user_id,$con)
 
 				mysqli_query($con,$query);
 
-				//remove the likes, by like -1
 				$query = "update {$type}s set likes = likes - 1 where {$type}_id = '$id' limit 1";
-				//{$type}_id 
 				mysqli_query($con,$query);
 			}
 		
@@ -603,16 +594,11 @@ function like_content($id, $type, $user_id,$con)
 		else //if they haven't liked, then allow them to do so
 		{
 		
-			
-			//$array["user_id"] will add the user_id into the databs as "user_id":...
 			$array["user_id"] = $user_id;
 			$array["date"] = date("Y-m-d H:i:s"); //the time post was liked
 
-			//to have an array within another
 			$likes[] = $array;
 
-			//convert the array to string using json
-			//we're converting the array because arrays cannot be saved into databases
 			$likes = json_encode($likes);
 
 			$query = "insert into likes(type,content_id,likes,following) 
@@ -620,7 +606,6 @@ function like_content($id, $type, $user_id,$con)
 
 			mysqli_query($con,$query);
 
-			//incrementing content table after liking it first
 			$query = "update {$type}s set likes = likes + 1 where {$type}_id = '$id' limit 1";
 			mysqli_query($con,$query);
 				
