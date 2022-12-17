@@ -482,13 +482,11 @@ function get_one_post($content_id,$con,$user_id)
 
 
 
-//deleting the post function
+//post delete function
 function delete_post($content_id,$con)
 {
-	//to mask the id using addslashes();
 	$content_id =$_GET['content_id'];
 
-	//checking for contents that has parents number
 	$query = "select parent from contents where content_id = '$content_id' limit 1";
 	$result = mysqli_query($con,$query);
 	 
@@ -516,7 +514,6 @@ function delete_post($content_id,$con)
 	
 	if (isset($_GET['content_id']) && is_numeric($_GET['content_id'])) 
 	{
-		//$content_id = addslashes();
 		$query = "delete from contents where content_id = '$content_id' limit 1";
 
 		mysqli_query($con,$query);
