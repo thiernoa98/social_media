@@ -675,14 +675,11 @@ function get_user($id,$con)
 
 
 //post edit
-// creating a post
 function edit_post($data, $con, $files)
 {
 
-	//['file']['name'] is from the html from profile, the name is file
 	if (!empty($data['content']) || !empty($files['file']['name']) ) 
 	{
-		//posting images in the post
 		$myimg = "";
 		$has_img = 0;
 
@@ -690,51 +687,42 @@ function edit_post($data, $con, $files)
 
 		if (!empty($files['file']['name'])) 
 		{
-			//creating a random folder 
 			$img_folder = "uploaded_posts/" . $user_data['user_id']."/"; 
 
 			if (!file_exists($img_folder)) 
 			{
-				mkdir($img_folder, 0777, true); //make foder.. 0777 file permission
+				mkdir($img_folder, 0777, true); 
 
-			//creating an empty index.php file in the new folder, for security reason
 				file_put_contents($img_folder . "index.php", 
 				"<h1 style='color:red'> Error 404 </h1>");
 			}
 
 			$myimg = $img_folder . generate_imgname(14) ;
 
-			//the name of the file is within the $_FILES array
 			move_uploaded_file($_FILES['file']['tmp_name'], $myimg);
 
-			//resizing the image
 			$image = resize_img($myimg, $myimg, 1500,1500);
 
 			$has_img = 1; 
 		}
 		
 
-		//addslashes is a function that ignores special characters  
 		$content = " ";
 		if (isset($data['content'])) 
 		{
 			$content = addslashes($data['content']); 
 		}
 
-		//getting the content_id
 		$content_id = addslashes($data['content_id']);
 
 		
-		//check if we have an image
 		if ($has_img) 
 		{
-			//storing updated data in the database 
 			$query = "update contents set content = '$content', image = '$myimg' 
 			where content_id = '$content_id' limit 1";
 		}
 		else
 		{
-			//if no image, don't save empty string
 			$query = "update contents set content = '$content'
 			where content_id = '$content_id' limit 1";
 		}
