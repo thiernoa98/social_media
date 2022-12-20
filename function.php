@@ -742,20 +742,13 @@ function edit_post($data, $con, $files)
 
 
 
-//user followings
 function user_following($id, $type, $user_id, $con)
 {
 		$likes = '';
 		
-
-		//querying to see where I have followed something
 		$query = "select * from likes where type ='$type' && content_id = '$user_id' limit 1";
 		$result = mysqli_query($con,$query);
 
-
-
-		//checking if a person has already liked the post
-		//then decode the array with jsondecode, make it an array again
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
 			$user_data = mysqli_fetch_assoc($result);
@@ -763,25 +756,17 @@ function user_following($id, $type, $user_id, $con)
 			if (is_array($user_data)) 
 			{
 			
-			//if they have already liked, then prevent them from doing so again 
 			$following = json_decode($user_data['following'],true);
 			
-
-			//getting a column of all users who liked the postt
 			$user_ids = array_column($following, "user_id");
 
-
-			//check if current user is not in user_ids or among the likers
 			if (!in_array($id, $user_ids)) 
 			{
-				//set $user_id to others' ids here
 				$array["user_id"] = $id;
-				$array["date"] = date("Y-m-d H:i:s"); //the time post was liked
+				$array["date"] = date("Y-m-d H:i:s");
 
 				$following[]= $array;
 
-				//convert the array to string using json
-				//we're converting the array because arrays cannot be saved into databases
 				$following = json_encode($following); 
 
 				$query = "update likes set following = '$following' where type ='$type' 
@@ -792,12 +777,9 @@ function user_following($id, $type, $user_id, $con)
 			}
 			else //unlike
 			{
-				//search for user who liked it already 
-				//$id is other people
 				$key = array_search($id, $user_ids);
 				unset($following[$key]);
 
-				//once unset, encode the likes and send it to the database & save
 				$following = json_encode($following); 
 
 				$query = "update likes set following = '$following' where type ='$type' 
@@ -811,21 +793,16 @@ function user_following($id, $type, $user_id, $con)
 			}
 		
 		}
-		else //if they haven't liked, then allow them to do so in the first place
+		else 
 		{
 			
-			//$array["user_id"] will add the user_id into the databs as "user_id":...
-			$array["user_id"] = $id; //$id is equal others user_ids.
-			$array["date"] = date("Y-m-d H:i:s"); //the time post was liked
+			$array["user_id"] = $id; 
+			$array["date"] = date("Y-m-d H:i:s"); 
 
-			//to have an array within another
 			$following[] = $array;
 
-			//convert the array to string using json
-			//we're converting the array because arrays cannot be saved into databases
 			$following = json_encode($following);
 
-			//it's $user_id there because content id is my own id!
 			$query = "insert into likes(type,content_id,likes,following) 
 			values ('$type','$user_id','$likes','$following') ";
 
