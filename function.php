@@ -626,13 +626,11 @@ function get_likes($id,$type,$con)
 
 	if (is_numeric($id)) 
 	{
-		//bringing up the likes
+		
 		$query = "select likes from likes where type ='$type' && content_id = '$id' limit 1";
 			
 		$result = mysqli_query($con,$query);
 
-		//checking if a person has already liked the post
-		//then decode the array with jsondecode, make it an array again
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
 			
