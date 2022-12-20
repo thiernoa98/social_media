@@ -640,7 +640,6 @@ function get_likes($id,$type,$con)
 			if (is_array($user_data)) 
 			{
 
-				//if they have already liked, decode the array
 				$likes = json_decode($user_data['likes'],true);
 
 				return $likes;
@@ -650,17 +649,16 @@ function get_likes($id,$type,$con)
 	}
 
 
-	return false; //if nothing happen
+	return false; 
 }
 
 
 
-//get user credentials for the likes_container.php, no get_user_profile function due to a different query
 
 function get_user($id,$con)
 {
 
-	//$query = "select * from users where user_id = '$id' ";
+
 	$query = "select * from users inner join 
 	contents on users.user_id = contents.userid where user_id = '$id' order by contents.id desc limit 1";
 	$result = mysqli_query($con,$query);
