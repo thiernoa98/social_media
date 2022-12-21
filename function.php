@@ -880,10 +880,9 @@ function save_settings($id,$data,$con)
 
 }
 
-//get comments
+
 function get_comments($id,$con)
 {
-	//inner join users on contents.userid = users.user_id 
 
 	$query = "select * from contents inner join users on contents.userid = users.user_id  where contents.parent = '$id' order by contents.id asc limit 10";
 	$result = mysqli_query($con,$query);
