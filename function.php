@@ -819,13 +819,10 @@ function get_following($id,$type,$con)
 {
 	if (is_numeric($id)) 
 	{
-		//bringing up the followings
 		$query = "select following from likes where type ='$type' && content_id = '$id' limit 1";
 			
 		$result = mysqli_query($con,$query);
 
-		//checking if a person has already liked the post
-		//then decode the array with jsondecode, make it an array again
 		if ($result && mysqli_num_rows($result) > 0) 
 		{
 			
@@ -844,7 +841,7 @@ function get_following($id,$type,$con)
 	}
 
 
-	return false; //if nothing happen
+	return false; 
 }
 
 //settings
