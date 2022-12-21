@@ -860,29 +860,17 @@ function get_settings($id,$con)
 	 }
 }
 
+
 //saving the settings
 function save_settings($id,$data,$con)
 {
-	/*
-	$password = $data['password'];
-	if ($data['password'] == $data['password2']) 
-	{
-		$data['password'] == $data['password2'];
-	}
-	else
-	{
-		//unset($data['password']);
-	}
-*/
 	$query = "update users set ";
 
 	foreach ($data as $key => $value) 
 	{
-		//.= adds to what already exist
 		$query .= $key . "='". $value ."',";
 	}
 
-	//trim it to remove the extra coma above at the end $key = '$value',...
 	$query = trim($query,",");
 	$query .= " where user_id = '$id' limit 1"; 
 
