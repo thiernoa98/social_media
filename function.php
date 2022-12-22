@@ -962,7 +962,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 			{
 				return $answerDay ."m ago";
 			}
-			elseif ($answerDay == 1) // == 1 minutes
+			elseif ($answerDay == 1) 
 			{
 				return $answerDay. "m ago";
 			}
@@ -971,7 +971,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 				$differenceFormat = '%s';
 				$answerDay = $interval->format($differenceFormat);
  
-				if (($answerDay < 60 ) && ($answerDay > 10)) //seconds
+				if (($answerDay < 60 ) && ($answerDay > 10))
 				{
 					return $answerDay ."sec ago";
 				}
