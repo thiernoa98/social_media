@@ -844,7 +844,7 @@ function get_following($id,$type,$con)
 	return false; 
 }
 
-//settings
+
 function get_settings($id,$con)
 {
 	$query = "select * from users where user_id = '$id' limit 1";
@@ -861,7 +861,7 @@ function get_settings($id,$con)
 }
 
 
-//saving the settings
+
 function save_settings($id,$data,$con)
 {
 	$query = "update users set ";
@@ -890,10 +890,10 @@ function get_comments($id,$con)
 	 return $result;
 }
 
-//getting the date as 
+
 function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 {
-	//declare...
+	
 	$today = date("Y-m-d H:i:s");
 	$datetime1 = date_create($pasttime);
 	$datetime2 = date_create($today);
@@ -914,7 +914,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 
 	if ($answerYear >= 1) //more or equal to 1 year
 	{
-		//date format " F j, Y", month day, and year
+		
 		$answerYear = date(" F j, Y", strtotime($pasttime));
 		return $answerYear;
 	}
@@ -923,7 +923,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 		$answerMonth = date(" F j, Y", strtotime($pasttime));
 		return $answerMonth;
 	}
-	elseif ($answerDay > 2) // > 2 days
+	elseif ($answerDay > 2) 
 	{
 		$answerDay = date(" F j, Y", strtotime($pasttime));
 		return $answerDay;
@@ -936,7 +936,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 	{
 		return "1d, ". date("h", strtotime($pasttime)) ."h";
 	}
-	else //less than a day
+	else 
 	{
 		$differenceFormat = '%h';
 		$answerDay = $interval->format($differenceFormat);
@@ -944,7 +944,7 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 		$differenceFormat = '%i';
 		$answerHour = $interval->format($differenceFormat);
 
-		//check if less than 24 hours & greater than 1 hour
+		
 		if (($answerHour < 24 ) && ($answerHour > 1)) 
 		{
 			return $answerDay . "h, ". $answerHour . "m ago";
@@ -953,12 +953,12 @@ function get_time($pasttime , $today = 0, $differenceFormat = '%y' )
 		{
 			return "1h ago";
 		}
-		else //less than an hour
+		else 
 		{
 			$differenceFormat = '%i';
 			$answerDay =  $interval->format($differenceFormat);
 
-			if (($answerDay < 60 ) && ($answerDay > 1)) //less than 60 min > 1 minutes
+			if (($answerDay < 60 ) && ($answerDay > 1))
 			{
 				return $answerDay ."m ago";
 			}
